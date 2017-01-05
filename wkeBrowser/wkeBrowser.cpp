@@ -55,7 +55,7 @@ private:
 
 
 #define MAX_LOADSTRING 100
-#define URLBAR_HEIGHT  24
+#define URLBAR_HEIGHT  18
 
 HINSTANCE hInst;
 HWND hMainWnd;
@@ -146,7 +146,7 @@ wkeWebView* onCreateView(wkeWebView* webView, void* param, const wkeNewViewInfo*
 
     if (wcscmp(target, L"") == 0 || wcscmp(target, L"_blank") == 0)
     {
-        if (wcsnicmp(url, L"file:///", 8) == 0)
+        if (_wcsnicmp(url, L"file:///", 8) == 0)
             url += 8;
         ShellExecuteW(NULL, L"open", (LPWSTR)url, NULL, NULL, SW_SHOW);
         return NULL;
@@ -162,7 +162,7 @@ wkeWebView* onCreateView(wkeWebView* webView, void* param, const wkeNewViewInfo*
     else
     {
         wkeWebView* newWindow = wkeCreateWebWindow(WKE_WINDOW_TYPE_POPUP, NULL, info->x, info->y, info->width, info->height);
-        wkeShowWindow(newWindow, SW_SHOW);
+        wkeShowWindow(newWindow, (bool)SW_SHOW);
         return newWindow;
     }
 
@@ -399,6 +399,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     wkeSettings settings;
     memset(&settings, 0, sizeof(settings));
 
+	//#define WKE_BROWSER_USE_LOCAL_PROXY
 #if defined(WKE_BROWSER_USE_LOCAL_PROXY)
     settings.proxy.type = WKE_PROXY_SOCKS5;
     strcpy(settings.proxy.hostname, "127.0.0.1");
@@ -441,7 +442,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     if (argc > 1)
         wkeLoadW(g_webView, argv[1]);
     else
-        wkeLoadHTMLW(g_webView, L"<p style=\"background-color: #00FF00\">Testing</p><img id=\"webkit logo\" src=\"http://webkit.org/images/icon-gold.png\" alt=\"Face\"><div style=\"border: solid blue; background: white;\" contenteditable=\"true\">div with blue border</div><ul><li>foo<li>bar<li>baz</ul>");
+        wkeLoadHTMLW(g_webView, L"<p style=\"background-color: #00FF00\">Testing</p><!--img id=\"webkit logo\" src=\"http://webkit.org/images/icon-gold.png\" alt=\"Face\"--><div style=\"border: solid blue; background: white;\" contenteditable=\"true\">div with blue border</div><ul><li>foo<li>bar<li>baz</ul>");
     LocalFree(argv);
     t3.End();
 
@@ -455,6 +456,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
         hMainWnd,
         0,
         hInstance, 0);
+	SendMessage(hURLBarWnd, WM_SETFONT, (WPARAM)(HFONT)GetStockObject(DEFAULT_GUI_FONT), 1);
 
     registerWebViewWindowClass();
     hViewWindow = CreateWindow(wkeWebViewClassName, 0, 
@@ -1175,6 +1177,13 @@ LRESULT CALLBACK UrlEditProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 		}
         return 0;
     }
+	else if (message == WM_KEYDOWN && (wParam == 'a' || wParam == 'A') && ::GetKeyState(VK_CONTROL) < 0)
+	{
+		SendMessage(hDlg, EM_SETSEL, 0, -1);
+		return 0;
+	}
+	else if (message == WM_CHAR && (wParam == '\x01'))
+		return 0;
     
     return (LRESULT)CallWindowProc((WNDPROC)DefEditProc,hDlg,message,wParam,lParam);
 }
