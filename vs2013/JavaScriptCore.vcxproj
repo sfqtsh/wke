@@ -47,7 +47,11 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'" />
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'">
+    <Lib>
+      <AdditionalDependencies />
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\JavaScriptCore\runtime\ArgList.cpp" />

@@ -47,7 +47,17 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'" />
   </PropertyGroup>
-  <ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'">
+    <ClCompile />
+    <Lib>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Cairo_CFLite|Win32'">
+    <ClCompile />
+    <Lib>
+      <AdditionalOptions>/ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\JavaScriptCore\wtf\win\MainThreadWin.cpp" />

@@ -72,37 +72,8 @@
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>REM Do not edit from the Visual Studio IDE! Customize via a $(ProjectName)PostBuild.cmd file
-if not exist "$(ProjectDir)$(ProjectName)PostBuild.cmd" exit /b
-
-set CONFIGURATIONNAME=$(Configuration)
-set INPUTDIR=$(ProjectDir)
-set INPUTFILENAME=$(ProjectFileName)
-set INPUTPATH=$(ProjectPath)
-set INTDIR=$(IntDir)
-set OUTDIR=$(OutDir)
-set PLATFORMNAME=$(Platform)
-set PROJECTDIR=$(ProjectDir)
-set PROJECTFILENAME=$(ProjectFileName)
-set PROJECTNAME=$(ProjectName)
-set PROJECTPATH=$(ProjectPath)
-set SOLUTIONDIR=$(SolutionDir)
-set SOLUTIONFILENAME=$(SolutionFileName)
-set SOLUTIONNAME=$(SolutionName)
-set SOLUTIONPATH=$(SolutionPath)
-set TARGETDIR=$(TargetDir)
-set TARGETEXT=$(TargetExt)
-set TARGETFILENAME=$(TargetFileName)
-set TARGETPATH=$(TargetPath)
-
-REM If any of the above variables didn%27t exist previously and
-REM were set to an empty string, set will set the errorlevel to 1,
-REM which will cause the project-specific script to think the build
-REM has failed. This cmd /c call will clear the errorlevel.
-cmd /c
-
-"$(ProjectDir)$(ProjectName)PostBuild.cmd"
-</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Cairo_CFLite|Win32'">
