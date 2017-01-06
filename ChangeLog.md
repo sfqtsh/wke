@@ -3,6 +3,10 @@
 * 修正 wkeLoadHtml(W) 加载页面内容时，wkeSetFileSystem 回调失效的问题。
 * 修改 libcurl 相关的 vsprops。
 
+﻿#### 2017-01-06 by sfqtsh
+* 修改wkeBrowser地址栏大小和字体，允许Ctrl+A全选。
+* 添加Visual Studio 2015工程文件。
+
 #### 2016-11-09 10:53 修正更新 libcurl 之后 wkeSetFileSystem 无效的问题。
 * 修正更新 libcurl 之后 wkeSetFileSystem 无效的问题，失效是因为 libcurl 的函数没有替换为 wkeSetFileSystem 设置的。
 * wkexe.exe 增加 --useragent 参数设置 UserAgent。
