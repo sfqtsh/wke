@@ -1063,7 +1063,10 @@ LRESULT CALLBACK WebViewWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
             ImmReleaseContext(hWnd, hIMC);
         }
         break;
-
+	case WM_SETCURSOR:
+		if (HTCLIENT == LOWORD(lParam))
+			return TRUE;
+		break;
     default:
         handled = false;
         break;
