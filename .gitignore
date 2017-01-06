@@ -7,3 +7,9 @@
 *.sdf
 *.opensdf
 *.cache
+*.VC.db
+*.VC.opendb
+.vs
+*.localstorage
+*.tss
+wkeBrowserConsole.txt

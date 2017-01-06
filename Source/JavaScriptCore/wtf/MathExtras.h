@@ -142,12 +142,15 @@ inline long long abs(long long num) { return _abs64(num); }
 inline bool isinf(double num) { return !_finite(num) && !_isnan(num); }
 inline bool isnan(double num) { return !!_isnan(num); }
 
-// cexer vs2013以上的math.h当中包含了些函数
+// cexer vs2013浠ヤ笂鐨刴ath.h褰撲腑鍖呭惈浜嗕簺鍑芥暟
 #if defined(_MSC_VER) && (_MSC_VER < 1800) //< VS2013
 inline bool signbit(double num) { return _copysign(1.0, num) < 0; }
 #endif
 
+// sfqtsh vs2015杩欓噷浼氭寰幆
+#if defined(_MSC_VER) && (_MSC_VER < 1900) //< VS2015
 inline double nextafter(double x, double y) { return _nextafter(x, y); }
+#endif
 inline float nextafterf(float x, float y) { return x > y ? x - FLT_EPSILON : x + FLT_EPSILON; }
 
 inline double copysign(double x, double y) { return _copysign(x, y); }
