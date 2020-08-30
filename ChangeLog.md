@@ -1,9 +1,12 @@
+﻿#### 2020-08-30 by sfqtsh
+* 添加Visual Studio 2017和Visual Studio 2019工程文件。
+
 #### 2018-05-25 00:27 修正 skeSetFileSystem 失效问题。
 * 更新 libcurl 为 7.50.1 版本。同时也修正了因 libcurl 原因 wkeSetFileSystem 失效的问题（貌似之前修正过一次。。。）。
 * 修正 wkeLoadHtml(W) 加载页面内容时，wkeSetFileSystem 回调失效的问题。
 * 修改 libcurl 相关的 vsprops。
 
-﻿#### 2017-01-07 by sfqtsh
+#### 2017-01-07 by sfqtsh
 * 修复wkeBrowser里光标闪烁的问题。
 * 调整修改VS2013和VS2015工程文件配置，消除一些warning。
 
